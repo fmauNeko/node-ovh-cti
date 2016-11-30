@@ -1,0 +1,39 @@
+{
+  "name": "ovh-cti",
+  "version": "0.0.1",
+  "description": "Node daemon to process VoIP events from OVH's CTI API.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "babel-node scripts/test.js | tap-diff",
+    "transpile": "babel -d lib src",
+    "prepublish": "npm run transpile"
+  },
+  "repository": "fmauNeko/node-ovh-cti",
+  "keywords": [
+    "ovh",
+    "cti",
+    "voip"
+  ],
+  "author": "Florian 'fmauNeko' Maunier <fmaunier@gmail.com> (https://www.dissidence.ovh)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fmauneko/node-ovh-cti/issues"
+  },
+  "homepage": "https://github.com/fmauneko/node-ovh-cti#readme",
+  "dependencies": {
+    "debug": "^2.3.3",
+    "superagent": "^3.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-latest": "^6.16.0",
+    "jasmine": "^2.5.2",
+    "jasmine-reporters": "^2.2.0",
+    "tap-diff": "^0.1.1"
+  },
+  "babel": {
+    "presets": [
+      "latest"
+    ]
+  }
+}
