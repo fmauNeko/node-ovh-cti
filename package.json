@@ -5,9 +5,10 @@
   "main": "lib/index.js",
   "bin": "bin/ovh-cti.js",
   "scripts": {
+    "prepublish": "npm run transpile",
     "test": "babel-node scripts/test.js | tap-diff",
-    "transpile": "babel -d lib src",
-    "prepublish": "npm run transpile"
+    "transpile": "babel -s -d lib src",
+    "watch": "babel -w -s -d lib src"
   },
   "repository": "fmauNeko/node-ovh-cti",
   "keywords": [
