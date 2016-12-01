@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/fmauneko/node-ovh-cti#readme",
   "engines": {
-    "node": ">=7.0.0"
+    "node": ">=6.0.0"
   },
   "dependencies": {
     "debug": "^2.3.3",
@@ -40,7 +40,7 @@
     "presets": [
       ["env", {
         "targets": {
-          "node": "7.0.0"
+          "node": "6.0.0"
         }
       }]
     ]
