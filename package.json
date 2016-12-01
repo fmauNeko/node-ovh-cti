@@ -22,20 +22,27 @@
     "url": "https://github.com/fmauneko/node-ovh-cti/issues"
   },
   "homepage": "https://github.com/fmauneko/node-ovh-cti#readme",
+  "engines": {
+    "node": ">=7.0.0"
+  },
   "dependencies": {
     "debug": "^2.3.3",
     "superagent": "^3.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
-    "babel-preset-latest": "^6.16.0",
+    "babel-preset-env": "0.0.9",
     "jasmine": "^2.5.2",
     "jasmine-reporters": "^2.2.0",
     "tap-diff": "^0.1.1"
   },
   "babel": {
     "presets": [
-      "latest"
+      ["env", {
+        "targets": {
+          "node": "7.0.0"
+        }
+      }]
     ]
   }
 }
