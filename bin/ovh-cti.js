@@ -1,7 +1,7 @@
 const Configstore = require('configstore');
 const OvhCti = require('../lib/index.js').OvhCti;
-const mqttHandler = require('../lib/handlers/mqtt-handler').default;
-const influxHandler = require('../lib/handlers/influx-handler').default;
+const mqttHandler = require('../lib/handlers/mqtt-handler');
+const influxHandler = require('../lib/handlers/influx-handler');
 const pkg = require('../package.json');
 
 const conf = new Configstore(pkg.name, {token: 'CONFIGUREME', handlers: {}, middlewares: {}});
