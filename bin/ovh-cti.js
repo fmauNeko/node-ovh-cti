@@ -1,5 +1,5 @@
 const Configstore = require('configstore');
-const OvhCti = require('../lib/index.js').OvhCti;
+const OvhCti = require('../lib/index.js');
 const mqttHandler = require('../lib/handlers/mqtt-handler');
 const influxHandler = require('../lib/handlers/influx-handler');
 const pkg = require('../package.json');
