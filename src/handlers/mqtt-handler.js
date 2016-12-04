@@ -23,9 +23,9 @@ export default function (conf) {
   }
 
   conf.set('handlers.mqtt', {
-    broker: 'URI of your MQTT broker',
-    username: 'admin',
-    password: 'public'
+    broker: 'mqtts://broker.example.com',
+    username: 'my_user',
+    password: '$ekret_p4$$w0rD'
   });
   console.log('MQTT handler needs configuration, see ' + conf.path + ' and restart the app.');
   return (event, resolve) => {

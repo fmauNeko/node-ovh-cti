@@ -33,6 +33,7 @@
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-preset-env": "0.0.9",
+    "babel-preset-stage-3": "^6.17.0",
     "jasmine": "^2.5.2",
     "jasmine-reporters": "^2.2.0",
     "tap-diff": "^0.1.1",
@@ -51,7 +52,8 @@
             "node": "6.0.0"
           }
         }
-      ]
+      ],
+      "stage-3"
     ]
   },
   "xo": {
