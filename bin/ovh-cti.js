@@ -1,6 +1,17 @@
+const Configstore = require('configstore');
 const OvhCti = require('../lib/index.js').OvhCti;
 const mqttHandler = require('../lib/handlers/mqttHandler').default;
+const pkg = require('../package.json');
 
-var cti = new OvhCti(process.argv[2]);
-cti.addHandler(mqttHandler('mqtts://broker.dissidence.ovh', process.argv[3], process.argv[4]));
-cti.run();
+const conf = new Configstore(pkg.name, {token: "CONFIGUREME", handlers: {}, middlewares: {}});
+
+var token = conf.get('token');
+
+if(/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/.test(token)) {
+  var cti = new OvhCti(token);
+  cti.addHandler(mqttHandler(conf));
+  cti.run();
+} else {
+  console.log('Your token is wrong or not configured, it should be an UUID. Please fix it at ' + conf.path);
+  process.exitCode = 1;
+}
