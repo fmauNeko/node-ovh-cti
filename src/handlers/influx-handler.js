@@ -18,13 +18,6 @@ export default function (conf) {
         }
       ]
     });
-    influxClient
-      .getDatabaseNames()
-      .then(names => {
-        if (!names.includes(influxConfig.database)) {
-          return influxClient.createDatabase(influxConfig.database);
-        }
-      });
     return (event, resolve, reject) => {
       influxClient.writePoints([
         {
@@ -46,6 +39,7 @@ export default function (conf) {
 
   conf.set('handlers.influx', {
     database: 'voip',
+    protocol: 'https',
     host: 'influxdb.example.com',
     port: 8086,
     username: 'my_user',
