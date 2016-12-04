@@ -6,7 +6,7 @@
   "bin": "bin/ovh-cti.js",
   "scripts": {
     "prepublish": "npm run transpile",
-    "test": "babel-node scripts/test.js | tap-diff",
+    "test": "xo && babel-node scripts/test.js | tap-diff",
     "transpile": "babel -s -d lib src",
     "watch": "babel -w -s -d lib src"
   },
@@ -35,7 +35,8 @@
     "babel-preset-env": "0.0.9",
     "jasmine": "^2.5.2",
     "jasmine-reporters": "^2.2.0",
-    "tap-diff": "^0.1.1"
+    "tap-diff": "^0.1.1",
+    "xo": "^0.17.1"
   },
   "optionalDependencies": {
     "influx": "^5.0.3",
@@ -51,6 +52,14 @@
           }
         }
       ]
+    ]
+  },
+  "xo": {
+    "esnext": true,
+    "space": 2,
+    "ignores": [
+      "lib",
+      "scripts"
     ]
   }
 }
