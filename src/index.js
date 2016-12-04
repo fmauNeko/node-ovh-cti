@@ -63,6 +63,6 @@ export default class OvhCti {
       ...this.middlewares,
       defaultMiddleware
     ];
-    return Promise.resolve([...event.Events]); // TODO: Run middlewares on event
+    return middlewares.reduce((prev, cur) => prev.then(cur), Promise.resolve(event));
   }
 }
