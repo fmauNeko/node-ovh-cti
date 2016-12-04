@@ -1,7 +1,7 @@
-import Jasmine from "jasmine";
-import {JUnitXmlReporter, TapReporter} from "jasmine-reporters";
+import Jasmine from 'jasmine';
+import {JUnitXmlReporter, TapReporter} from 'jasmine-reporters';
 
-var jasmine = new Jasmine();
+const jasmine = new Jasmine();
 
 jasmine.env.clearReporters();
 jasmine.addReporter(new JUnitXmlReporter());

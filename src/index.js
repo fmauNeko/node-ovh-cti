@@ -1,7 +1,7 @@
-import request from 'superagent';
-import defaultMiddleware from './middlewares/defaultMiddleware';
-import defaultHandler from './handlers/defaultHandler';
 import dbg from 'debug';
+import request from 'superagent';
+import defaultMiddleware from './middlewares/default-middleware';
+import defaultHandler from './handlers/default-handler';
 
 const debug = dbg('ovh-cti:main');
 
@@ -43,25 +43,27 @@ export class OvhCti {
       .then(processedEvents => this._processHandlers(processedEvents), err => {
         throw new Error(err);
       })
-      .then(_ => this.run(), err => {
+      .then(() => this.run(), err => {
         throw new Error(err);
       });
   }
 
   _processHandlers(events) {
-    let handlers = [
+    debug('Processing handlers...');
+    const handlers = [
       ...this.handlers,
-      defaultHandler,
+      defaultHandler
     ];
     return Promise.all(events.map(event => handlers.map(handler => new Promise((resolve, reject) => handler(event, resolve, reject)))));
   }
 
   _processMiddlewares(event) {
-    let middlewares = [
+    debug('Processing middlewares...');
+    const middlewares = [
       ...this.middlewares,
-      defaultMiddleware,
+      defaultMiddleware
     ];
-    return Promise.resolve([...event.Events]); //TODO: Run middlewares on event
+    return Promise.resolve([...event.Events]); // TODO: Run middlewares on event
   }
 }
 
