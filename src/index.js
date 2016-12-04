@@ -5,7 +5,7 @@ import defaultHandler from './handlers/default-handler';
 
 const debug = dbg('ovh-cti:main');
 
-export class OvhCti {
+export default class OvhCti {
   constructor(token) {
     this.token = token;
     this.middlewares = [];
@@ -66,5 +66,3 @@ export class OvhCti {
     return Promise.resolve([...event.Events]); // TODO: Run middlewares on event
   }
 }
-
-export default OvhCti;
