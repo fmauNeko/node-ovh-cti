@@ -8,6 +8,7 @@ const debug = dbg('ovh-cti:main');
 export default class OvhCti {
   constructor(token) {
     this.token = token;
+    this.session = '';
     this.middlewares = [];
     this.handlers = [];
   }
@@ -35,10 +36,14 @@ export default class OvhCti {
   run() {
     request
       .get('https://events.voip.ovh.net')
-      .query({token: this.token})
-      .then(res => JSON.parse(res.text), err => {
+      .query({...this._getSessionQuery(), token: this.token})
+      .catch(err => {
         debug('Request failed: ' + err);
         return this.run();
+      })
+      .then(res => JSON.parse(res.text))
+      .then(event => this._setSession(event), err => {
+        throw new Error(err);
       })
       .then(event => this._processMiddlewares(event), err => {
         throw new Error(err);
@@ -49,6 +54,10 @@ export default class OvhCti {
       .then(() => this.run(), err => {
         throw new Error(err);
       });
+  }
+
+  _getSessionQuery() {
+    return this.session !== '' ? {session: this.session} : {};
   }
 
   _processHandlers(events) {
@@ -67,5 +76,10 @@ export default class OvhCti {
       defaultMiddleware
     ];
     return middlewares.reduce((prev, cur) => prev.then(cur), Promise.resolve(event));
+  }
+
+  _setSession(event) {
+    this.session = event.Session;
+    return event;
   }
 }
