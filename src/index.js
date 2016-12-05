@@ -36,7 +36,10 @@ export default class OvhCti {
     request
       .get('https://events.voip.ovh.net')
       .query({token: this.token})
-      .then(res => JSON.parse(res.text))
+      .then(res => JSON.parse(res.text), err => {
+        debug('Request failed: ' + err);
+        return this.run();
+      })
       .then(event => this._processMiddlewares(event), err => {
         throw new Error(err);
       })
