@@ -34,9 +34,10 @@ export default class OvhCti {
   }
 
   run() {
-    request
+    return request
       .get('https://events.voip.ovh.net')
       .query({...this._getSessionQuery(), token: this.token})
+      .timeout(65000)
       .catch(err => {
         debug('Request failed: ' + err);
         return this.run();
