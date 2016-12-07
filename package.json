@@ -1,6 +1,6 @@
 {
   "name": "ovh-cti",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Node daemon to process VoIP events from OVH's CTI API.",
   "main": "lib/index.js",
   "bin": "bin/ovh-cti.js",
