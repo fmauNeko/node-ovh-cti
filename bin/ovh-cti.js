@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const Configstore = require('configstore');
 const OvhCti = require('../lib/index.js');
 const dropRegisteredEventsMiddleware = require('../lib/middlewares/drop-registered-events-middleware');
