@@ -1,0 +1,70 @@
+{
+  "name": "ovh-cti",
+  "version": "0.1.0",
+  "description": "Node daemon to process VoIP events from OVH's CTI API.",
+  "main": "lib/index.js",
+  "bin": "bin/ovh-cti.js",
+  "scripts": {
+    "prepublish": "npm run transpile",
+    "test": "xo && babel-node scripts/test.js | tap-diff",
+    "transpile": "babel -s -d lib src",
+    "watch": "babel -w -s -d lib src"
+  },
+  "repository": "fmauNeko/node-ovh-cti",
+  "keywords": [
+    "ovh",
+    "cti",
+    "voip"
+  ],
+  "author": "Florian 'fmauNeko' Maunier <fmaunier@gmail.com> (https://www.dissidence.ovh)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fmauneko/node-ovh-cti/issues"
+  },
+  "homepage": "https://github.com/fmauneko/node-ovh-cti#readme",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "configstore": "^2.1.0",
+    "debug": "^2.3.3",
+    "superagent": "^3.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "0.0.9",
+    "babel-preset-stage-3": "^6.17.0",
+    "jasmine": "^2.5.2",
+    "jasmine-reporters": "^2.2.0",
+    "tap-diff": "^0.1.1",
+    "xo": "^0.17.1"
+  },
+  "optionalDependencies": {
+    "influx": "^5.0.3",
+    "mqtt": "^2.1.3"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env", {
+          "targets": {
+            "node": "6.0.0"
+          }
+        }
+      ],
+      "stage-3"
+    ],
+    "plugins": [
+      "add-module-exports"
+    ]
+  },
+  "xo": {
+    "esnext": true,
+    "space": 2,
+    "ignores": [
+      "lib",
+      "scripts"
+    ]
+  }
+}
