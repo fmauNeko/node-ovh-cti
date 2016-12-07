@@ -5,7 +5,7 @@ const debug = dbg('ovh-cti:middlewares:drop-registered-events');
 export default function (event) {
   return new Promise(resolve => {
     const filteredEvents = event.Events.filter(event => event.Event !== 'registered');
-    const count = event.Events.length - filteredEvents.length
+    const count = event.Events.length - filteredEvents.length;
     if (count > 0) {
       debug('Filtered ' + count + ' SIP \'registered\' events.');
       event.Events = filteredEvents;

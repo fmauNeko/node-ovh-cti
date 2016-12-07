@@ -8,8 +8,8 @@ const activeCalls = {};
 export default function (event) {
   return new Promise(resolve => {
     event.Events.map(evt => {
-      let startDate = new Date(evt.Data.Ts * 1000);
-      startDate.setTime(startDate.getTime() - startDate.getTimezoneOffset() * 60 * 1000);
+      const startDate = new Date(evt.Data.Ts * 1000);
+      startDate.setTime(startDate.getTime() - (startDate.getTimezoneOffset() * 60 * 1000));
       evt.Data.DateStart = startDate;
 
       switch (evt.Event) {
@@ -31,7 +31,11 @@ export default function (event) {
             delete activeCalls[evt.Data.CallId];
           }
           break;
+        default:
+          break;
       }
+
+      return evt;
     });
     debug({Lines: lineStatus});
     debug({Calls: activeCalls});

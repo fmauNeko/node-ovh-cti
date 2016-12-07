@@ -58,7 +58,7 @@ export default class OvhCti {
   }
 
   _getSessionQuery() {
-    return this.session !== '' ? {session: this.session} : {};
+    return this.session === '' ? {} : {session: this.session};
   }
 
   _processHandlers(events) {
