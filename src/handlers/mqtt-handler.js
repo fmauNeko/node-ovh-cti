@@ -12,12 +12,12 @@ export default function (conf) {
       password: mqttConfig.password
     });
     return (event, resolve, reject) => {
-      mqttClient.publish('ovh-cti/' + event.Ressource, event.Event, {}, err => {
+      mqttClient.publish('voip/' + event.Ressource, event.Status, {}, err => {
         if (err) {
           reject(err);
         }
       });
-      debug('Event ' + event.Event + ' published to topic ovh-cti/' + event.Ressource);
+      debug('Event ' + event.Status + ' published to topic voip/' + event.Ressource);
       resolve({mqtt: true});
     };
   }

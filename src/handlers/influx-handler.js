@@ -15,10 +15,34 @@ export default function (conf) {
             type: FieldType.STRING
           },
           tags: ['line']
+        },
+        {
+          measurement: 'call',
+          fields: {
+            duration: FieldType.FLOAT
+          },
+          tags: ['external', 'internal']
         }
       ]
     });
     return (event, resolve, reject) => {
+      if (event.Event === 'end_calling') {
+        influxClient.writePoints([
+          {
+            measurement: 'call',
+            fields: {
+              duration: event.CallDuration
+            },
+            tags: {
+              external: event.Data.Calling === event.Ressource ? event.Data.Called : event.Data.Calling,
+              internal: event.Data.Calling === event.Ressource ? event.Data.Calling : event.Data.Called
+            }
+          }
+        ]).catch(err => {
+          reject(err);
+        });
+        debug('Call ' + event.Data.CallId + ' added to database ' + influxConfig.database);
+      }
       influxClient.writePoints([
         {
           measurement: 'event',
