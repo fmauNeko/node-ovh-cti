@@ -26,19 +26,19 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "configstore": "^2.1.0",
+    "configstore": "^3.1.0",
     "debug": "^2.3.3",
     "superagent": "^3.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-preset-env": "0.0.9",
+    "babel-preset-env": "^1.4.0",
     "babel-preset-stage-3": "^6.17.0",
     "jasmine": "^2.5.2",
     "jasmine-reporters": "^2.2.0",
     "tap-diff": "^0.1.1",
-    "xo": "^0.17.1"
+    "xo": "^0.18.2"
   },
   "optionalDependencies": {
     "influx": "^5.0.3",
@@ -47,9 +47,10 @@
   "babel": {
     "presets": [
       [
-        "env", {
+        "env",
+        {
           "targets": {
-            "node": "6.0.0"
+            "node": 6.0
           }
         }
       ],
